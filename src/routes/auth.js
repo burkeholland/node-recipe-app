@@ -83,6 +83,17 @@ router.post('/login', async (req, res) => {
 		path: '/',
 	})
 
+	// I also love promises
+	await new Promise((resolve, reject) => {
+		req.session.save((err) => {
+			if (err) {
+				reject(err)
+			} else {
+				resolve()
+			}
+		})
+	})
+
 	return res.status(200).json({ success: true, userId: data.user.id })
 })
 
