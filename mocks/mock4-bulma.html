@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe App - Bulma Design</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero.is-primary {
+            background: linear-gradient(135deg, #00d1b2 0%, #00b89c 100%);
+        }
+        .feature-box {
+            text-align: center;
+            padding: 2rem;
+            height: 100%;
+            transition: transform 0.3s;
+        }
+        .feature-box:hover {
+            transform: translateY(-5px);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            color: #00d1b2;
+            margin-bottom: 1rem;
+        }
+        .recipe-card {
+            height: 100%;
+            transition: box-shadow 0.3s;
+        }
+        .recipe-card:hover {
+            box-shadow: 0 8px 16px rgba(10, 10, 10, 0.2);
+        }
+        .recipe-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .navbar-brand-text {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        .recipe-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4a4a4a;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+                    <span class="icon-text navbar-brand-text">
+                        <span class="icon">
+                            <i class="fas fa-utensils"></i>
+                        </span>
+                        <span>Recipe App</span>
+                    </span>
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item" href="#">Home</a>
+                    <a class="navbar-item" href="#recipes">All Recipes</a>
+                    <a class="navbar-item" href="#add">Add Recipe</a>
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <button class="button is-primary is-light">
+                                <strong>Login</strong>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero is-primary is-medium">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <p class="title is-1">
+                    Welcome to Recipe App
+                </p>
+                <p class="subtitle is-3">
+                    Discover, create, and manage your favorite recipes!
+                </p>
+                <a href="#recipes" class="button is-white is-large">
+                    <span class="icon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <span>Explore Recipes</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-4">
+                    <div class="box feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3 class="title is-4">Browse Recipes</h3>
+                        <p class="subtitle is-6">Explore our collection of delicious recipes from around the world</p>
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <div class="box feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-plus-circle"></i>
+                        </div>
+                        <h3 class="title is-4">Add New Recipes</h3>
+                        <p class="subtitle is-6">Share your own culinary creations with the community</p>
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <div class="box feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h3 class="title is-4">Edit & Manage</h3>
+                        <p class="subtitle is-6">Update and organize your recipe collection easily</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipes -->
+    <section id="recipes" class="section has-background-light">
+        <div class="container">
+            <div class="level mb-5">
+                <div class="level-left">
+                    <div class="level-item">
+                        <h2 class="title is-2">Popular Recipes</h2>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="level-item">
+                        <button class="button is-primary is-medium">
+                            <span class="icon">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                            <span>Add New Recipe</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-multiline">
+                <div class="column is-4">
+                    <div class="card recipe-card">
+                        <div class="card-image">
+                            <figure class="image recipe-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <p class="title is-4">Classic Spaghetti Carbonara</p>
+                            <div class="recipe-meta mb-3">
+                                <span class="icon">
+                                    <i class="fas fa-clock"></i>
+                                </span>
+                                <span>30 mins</span>
+                            </div>
+                            <div class="content">
+                                Authentic Italian pasta dish with eggs, cheese, and pancetta...
+                            </div>
+                            <div class="buttons">
+                                <button class="button is-primary is-outlined">
+                                    <span class="icon">
+                                        <i class="fas fa-eye"></i>
+                                    </span>
+                                    <span>View Recipe</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column is-4">
+                    <div class="card recipe-card">
+                        <div class="card-image">
+                            <figure class="image recipe-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <p class="title is-4">Chocolate Chip Cookies</p>
+                            <div class="recipe-meta mb-3">
+                                <span class="icon">
+                                    <i class="fas fa-clock"></i>
+                                </span>
+                                <span>25 mins</span>
+                            </div>
+                            <div class="content">
+                                Perfectly chewy cookies with melted chocolate chips...
+                            </div>
+                            <div class="buttons">
+                                <button class="button is-primary is-outlined">
+                                    <span class="icon">
+                                        <i class="fas fa-eye"></i>
+                                    </span>
+                                    <span>View Recipe</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column is-4">
+                    <div class="card recipe-card">
+                        <div class="card-image">
+                            <figure class="image recipe-image" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <p class="title is-4">Thai Green Curry</p>
+                            <div class="recipe-meta mb-3">
+                                <span class="icon">
+                                    <i class="fas fa-clock"></i>
+                                </span>
+                                <span>45 mins</span>
+                            </div>
+                            <div class="content">
+                                Fragrant and spicy curry with coconut milk and vegetables...
+                            </div>
+                            <div class="buttons">
+                                <button class="button is-primary is-outlined">
+                                    <span class="icon">
+                                        <i class="fas fa-eye"></i>
+                                    </span>
+                                    <span>View Recipe</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Recipe Modal -->
+    <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Add New Recipe</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="field">
+                    <label class="label">Recipe Title</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="e.g. Chocolate Cake">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Ingredients</label>
+                    <div class="control">
+                        <textarea class="textarea" placeholder="List ingredients, one per line" rows="4"></textarea>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Method</label>
+                    <div class="control">
+                        <textarea class="textarea" placeholder="Step-by-step instructions" rows="6"></textarea>
+                    </div>
+                </div>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-primary">Add Recipe</button>
+                <button class="button">Cancel</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer has-background-dark has-text-white-ter">
+        <div class="content has-text-centered">
+            <p>
+                <strong class="has-text-white">&copy; 2025 Recipe App</strong> - Bulma Design
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar burger toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+            $navbarBurgers.forEach( el => {
+                el.addEventListener('click', () => {
+                    const target = el.dataset.target;
+                    const $target = document.getElementById(target);
+                    el.classList.toggle('is-active');
+                    $target.classList.toggle('is-active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
