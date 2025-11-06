@@ -1,0 +1,54 @@
+<div class="auth-modal" id="auth-modal" aria-hidden="true" role="dialog" aria-labelledby="auth-modal-title" tabindex="-1">
+	<div class="auth-modal__overlay" data-auth-close></div>
+	<div class="auth-modal__content" role="document">
+		<button class="auth-modal__close" type="button" aria-label="Close dialog" data-auth-close>&times;</button>
+		<h2 id="auth-modal-title">Welcome back</h2>
+		<div class="auth-modal__tabs">
+			<button class="auth-modal__tab" data-auth-tab="login" aria-controls="auth-login-form" aria-selected="true">Login</button>
+			<button class="auth-modal__tab" data-auth-tab="signup" aria-controls="auth-signup-form" aria-selected="false">Register</button>
+		</div>
+		<div class="auth-modal__forms">
+			<form class="auth-modal__form" id="auth-login-form" data-auth-form="login">
+				<div class="form-group">
+					<label for="login-email">Email</label>
+					<input type="email" id="login-email" name="email" autocomplete="email" required>
+				</div>
+				<div class="form-group">
+					<label for="login-password">Password</label>
+					<input type="password" id="login-password" name="password" autocomplete="current-password" required>
+				</div>
+				<div class="auth-modal__actions">
+					<button class="btn btn-primary" type="submit">Login</button>
+				</div>
+			</form>
+			<form class="auth-modal__form auth-modal__form--hidden" id="auth-signup-form" data-auth-form="signup">
+				<div class="form-group">
+					<label for="signup-email">Email</label>
+					<input type="email" id="signup-email" name="email" autocomplete="email" required>
+				</div>
+				<div class="form-group">
+					<label for="signup-password">Password</label>
+					<input type="password" id="signup-password" name="password" autocomplete="new-password" required minlength="6">
+				</div>
+				<div class="form-group">
+					<label for="signup-confirm-password">Confirm Password</label>
+					<input type="password" id="signup-confirm-password" name="confirmPassword" autocomplete="new-password" required minlength="6">
+				</div>
+				<div class="form-group auth-modal__terms">
+					<label>
+						<input type="checkbox" name="terms" required>
+						I agree to the terms and conditions
+					</label>
+				</div>
+				<div class="auth-modal__actions">
+					<button class="btn btn-primary" type="submit">Register</button>
+				</div>
+			</form>
+		</div>
+		<p class="auth-modal__error" id="auth-modal-error" role="status" aria-live="polite"></p>
+		<div class="auth-modal__loading" id="auth-modal-loading" hidden aria-hidden="true">
+			<span class="auth-modal__spinner" aria-hidden="true"></span>
+			<span>Working on it...</span>
+		</div>
+	</div>
+</div>

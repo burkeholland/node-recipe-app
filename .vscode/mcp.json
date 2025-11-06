@@ -1,0 +1,9 @@
+{
+	"servers": {
+		"supabased": {
+			"url": "https://mcp.supabase.com/mcp?project_ref=ezkgdtijggknpxrzpxds",
+			"type": "http"
+		}
+	},
+	"inputs": []
+}

@@ -1,0 +1,251 @@
+<style>
+    @keyframes rainbow {
+        0% { color: #ff0000; }
+        16% { color: #ff8800; }
+        33% { color: #ffff00; }
+        50% { color: #00ff00; }
+        66% { color: #0088ff; }
+        83% { color: #8800ff; }
+        100% { color: #ff0000; }
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-30px); }
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.3); }
+    }
+
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+        20%, 40%, 60%, 80% { transform: translateX(10px); }
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        25% { transform: translateY(-20px) rotate(5deg); }
+        50% { transform: translateY(-40px) rotate(-5deg); }
+        75% { transform: translateY(-20px) rotate(3deg); }
+    }
+
+    @keyframes disco {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    @keyframes glitch {
+        0% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
+        25% { text-shadow: -2px 2px #ff00ff, 2px -2px #00ffff; }
+        50% { text-shadow: 2px -2px #ff00ff, -2px 2px #00ffff; }
+        75% { text-shadow: -2px -2px #ff00ff, 2px 2px #00ffff; }
+        100% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
+    }
+
+    .wow-container {
+        min-height: 80vh;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #f093fb, #f5576c);
+        background-size: 400% 400%;
+        animation: disco 5s ease infinite;
+        padding: 3rem;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .wow-title {
+        font-size: 8rem;
+        font-weight: 900;
+        animation: rainbow 2s linear infinite, pulse 1s ease-in-out infinite, glitch 0.3s ease infinite;
+        text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        margin: 2rem 0;
+        letter-spacing: 2rem;
+    }
+
+    .wow-subtitle {
+        font-size: 3rem;
+        animation: shake 0.5s ease infinite;
+        color: white;
+        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+        margin: 1rem 0;
+    }
+
+    .wow-level {
+        font-size: 5rem;
+        font-weight: bold;
+        animation: bounce 1s ease infinite;
+        color: #ffff00;
+        text-shadow: 0 0 20px #ff0000, 0 0 40px #ff00ff, 0 0 60px #00ffff;
+        margin: 2rem 0;
+    }
+
+    .emoji-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin: 3rem 0;
+    }
+
+    .emoji {
+        font-size: 4rem;
+        animation: float 3s ease-in-out infinite;
+        display: inline-block;
+    }
+
+    .emoji:nth-child(1) { animation-delay: 0s; }
+    .emoji:nth-child(2) { animation-delay: 0.1s; }
+    .emoji:nth-child(3) { animation-delay: 0.2s; }
+    .emoji:nth-child(4) { animation-delay: 0.3s; }
+    .emoji:nth-child(5) { animation-delay: 0.4s; }
+    .emoji:nth-child(6) { animation-delay: 0.5s; }
+    .emoji:nth-child(7) { animation-delay: 0.6s; }
+    .emoji:nth-child(8) { animation-delay: 0.7s; }
+    .emoji:nth-child(9) { animation-delay: 0.8s; }
+    .emoji:nth-child(10) { animation-delay: 0.9s; }
+
+    .fact-box {
+        background: rgba(255, 255, 255, 0.95);
+        border: 5px solid #ff00ff;
+        border-radius: 20px;
+        padding: 2rem;
+        margin: 3rem auto;
+        max-width: 800px;
+        box-shadow: 0 0 30px rgba(255, 0, 255, 0.8), 0 0 60px rgba(0, 255, 255, 0.6);
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    .fact-text {
+        font-size: 1.8rem;
+        color: #333;
+        font-weight: bold;
+        line-height: 1.6;
+    }
+
+    .spinning-unicorn {
+        font-size: 10rem;
+        animation: spin 3s linear infinite;
+        display: inline-block;
+        margin: 2rem;
+    }
+
+    .fireworks {
+        position: absolute;
+        font-size: 3rem;
+        animation: float 4s ease-in-out infinite;
+    }
+
+    .fireworks:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+    .fireworks:nth-child(2) { top: 20%; right: 15%; animation-delay: 0.5s; }
+    .fireworks:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 1s; }
+    .fireworks:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 1.5s; }
+    .fireworks:nth-child(5) { top: 50%; left: 5%; animation-delay: 2s; }
+    .fireworks:nth-child(6) { top: 60%; right: 5%; animation-delay: 2.5s; }
+
+    .wow-message {
+        font-size: 2.5rem;
+        color: white;
+        font-weight: bold;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+        margin: 2rem 0;
+        animation: rainbow 3s linear infinite;
+    }
+
+    .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background: #f0f;
+        position: absolute;
+        animation: float 5s ease-in-out infinite;
+    }
+
+    @media (max-width: 768px) {
+        .wow-title {
+            font-size: 4rem;
+            letter-spacing: 1rem;
+        }
+        .wow-subtitle {
+            font-size: 1.5rem;
+        }
+        .wow-level {
+            font-size: 3rem;
+        }
+        .spinning-unicorn {
+            font-size: 5rem;
+        }
+    }
+</style>
+
+<div class="wow-container">
+    <div class="fireworks">💥</div>
+    <div class="fireworks">✨</div>
+    <div class="fireworks">🎆</div>
+    <div class="fireworks">🎇</div>
+    <div class="fireworks">💫</div>
+    <div class="fireworks">⭐</div>
+
+    <h1 class="wow-title">W🌟O🌟W</h1>
+    
+    <h2 class="wow-subtitle">YOU HAVE REACHED THE ULTIMATE WOW ZONE!</h2>
+    
+    <div class="wow-level">WOW LEVEL: {{wowLevel}} 📈</div>
+    
+    <div class="spinning-unicorn">🦄</div>
+    
+    <p class="wow-message">🎊 CONGRATULATIONS! YOU ARE NOW 347% MORE AWESOME! 🎊</p>
+    
+    <div class="emoji-container">
+        {{#each emojis}}
+            <span class="emoji">{{this}}</span>
+        {{/each}}
+    </div>
+    
+    <div class="fact-box">
+        <p class="fact-text">🤯 MIND-BLOWING WOW FACT OF THE MOMENT 🤯</p>
+        <p class="fact-text">{{randomFact}}</p>
+    </div>
+    
+    <p class="wow-message">⚡ YOUR BROWSER IS NOW OPERATING AT 420% CAPACITY ⚡</p>
+    
+    <div class="spinning-unicorn">🌈</div>
+    
+    <p class="wow-message">🚀 MAXIMUM WOW ACHIEVED 🚀</p>
+    
+    <div style="margin-top: 3rem;">
+        <p style="color: white; font-size: 1.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+            ⚠️ WARNING: This page contains lethal levels of awesomeness ⚠️
+        </p>
+        <p style="color: white; font-size: 1.2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); margin-top: 1rem;">
+            (No recipes were harmed in the making of this WOW page)
+        </p>
+    </div>
+</div>
+
+<script>
+    // Extra ridiculous JavaScript for maximum WOW
+    document.addEventListener('DOMContentLoaded', function() {
+        // Random background color flash
+        setInterval(() => {
+            if (Math.random() > 0.95) {
+                document.querySelector('.wow-container').style.filter = 'hue-rotate(' + Math.random() * 360 + 'deg)';
+                setTimeout(() => {
+                    document.querySelector('.wow-container').style.filter = 'hue-rotate(0deg)';
+                }, 100);
+            }
+        }, 500);
+
+        // Console wow
+        console.log('%c🎉 WOW! YOU FOUND THE SECRET CONSOLE MESSAGE! 🎉', 'font-size: 30px; color: #ff00ff; text-shadow: 2px 2px #00ffff;');
+        console.log('%cYour WOW level has been permanently increased!', 'font-size: 20px; color: #00ff00;');
+    });
+</script>

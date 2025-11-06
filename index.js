@@ -1,7 +1,12 @@
+require('dotenv').config()
 const express = require('express')
 const exphbs = require('express-handlebars')
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
 const { initializeDb } = require('./src/database')
+const { checkAuth } = require('./src/middleware/auth')
 const routes = require('./src/routes')
+const authRoutes = require('./src/routes/auth')
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -9,6 +14,25 @@ const PORT = process.env.PORT || 3000
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
+app.use(cookieParser())
+app.use(
+	session({
+		secret: process.env.SESSION_SECRET || 'supabase-demo-secret',
+		resave: false,
+		saveUninitialized: false,
+		cookie: {
+			httpOnly: true,
+			secure: process.env.NODE_ENV === 'production',
+			sameSite: 'strict',
+			maxAge: 1000 * 60 * 60 * 24,
+		},
+	})
+)
+app.use(checkAuth())
+app.use((req, res, next) => {
+	res.locals.user = req.user
+	return next()
+})
 
 app.engine(
 	'hbs',
@@ -43,8 +67,10 @@ app.engine(
 )
 app.set('view engine', 'hbs')
 app.set('views', './views')
+// I also love promises
 initializeDb().catch(console.error)
 
+app.use('/auth', authRoutes)
 app.use('/', routes)
 
 app.listen(PORT, () => {

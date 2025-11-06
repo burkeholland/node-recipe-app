@@ -13,6 +13,7 @@ router.get('/recipes', async (req, res) => {
 	res.render('recipes', { recipes })
 })
 
+
 router.get('/recipes/:id', async (req, res) => {
 	const db = await getDbConnection()
 	const recipeId = req.params.id
@@ -39,5 +40,16 @@ router.post('/recipes/:id/edit', async (req, res) => {
 	])
 	res.redirect(`/recipes/${recipeId}`)
 })
+
+router.get('/auth/success', (req, res) => {
+	const email = req.query.email || 'your account'
+	res.render('auth-success', { email })
+})
+
+router.get('/auth/confirm', (req, res) => {
+	const email = req.query.email || 'your account'
+	res.render('auth-confirmed', { email })
+})
+
 
 module.exports = router

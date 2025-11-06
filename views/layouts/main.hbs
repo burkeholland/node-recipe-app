@@ -14,8 +14,19 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/recipes">All Recipes</a></li>
             </ul>
+            <div class="auth-controls">
+                {{#if user}}
+                    <span class="auth-controls__user">{{user.email}}</span>
+                    <form method="post" action="/auth/logout" data-auth-logout>
+                        <button class="btn btn-secondary" type="submit">Logout</button>
+                    </form>
+                {{else}}
+                    <button class="btn btn-primary" type="button" data-auth-open>Login</button>
+                {{/if}}
+            </div>
         </nav>
     </header>
+    {{> auth-modal}}
     
     <main>
         {{{body}}}
@@ -24,5 +35,6 @@
     <footer>
         <p>&copy; 2025 Recipe App</p>
     </footer>
+    <script src="/js/auth.js" defer></script>
 </body>
 </html>
