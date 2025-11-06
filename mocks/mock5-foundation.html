@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe App - Foundation Design</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        .top-bar {
+            background: #2c3e50;
+        }
+        .top-bar-title strong {
+            font-size: 1.5rem;
+            color: #fefefe;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: #fefefe;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+        .hero-section p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        .feature-callout {
+            background: #fefefe;
+            border: 1px solid #e6e6e6;
+            padding: 2rem;
+            text-align: center;
+            height: 100%;
+            transition: box-shadow 0.3s;
+        }
+        .feature-callout:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .feature-icon {
+            font-size: 3.5rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+        .recipe-card {
+            background: #fefefe;
+            border: 1px solid #e6e6e6;
+            margin-bottom: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .recipe-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+        }
+        .recipe-content {
+            padding: 1.5rem;
+        }
+        .recipe-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        .recipe-meta {
+            color: #8a8a8a;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .recipe-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .section-header {
+            margin-bottom: 2rem;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 1rem;
+        }
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #2c3e50;
+        }
+        .footer-dark {
+            background: #2c3e50;
+            color: #fefefe;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+        .button.primary {
+            background-color: #3498db;
+        }
+        .button.primary:hover {
+            background-color: #2980b9;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: #3498db;
+            color: white;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <ul class="menu">
+                <li class="menu-text">
+                    <strong>
+                        <i class="fas fa-utensils"></i> Recipe App
+                    </strong>
+                </li>
+            </ul>
+        </div>
+        <div class="top-bar-right">
+            <ul class="menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#recipes">All Recipes</a></li>
+                <li><a href="#add">Add Recipe</a></li>
+                <li><button class="button small primary">Login</button></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="grid-container">
+            <h1>Welcome to Recipe App</h1>
+            <p>Discover, create, and manage your favorite recipes!</p>
+            <a href="#recipes" class="button large hollow">
+                <i class="fas fa-search"></i> Explore Recipes
+            </a>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="grid-container" style="margin-top: 4rem; margin-bottom: 4rem;">
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-4">
+                <div class="feature-callout callout">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Browse Recipes</h3>
+                    <p>Explore our collection of delicious recipes from around the world</p>
+                </div>
+            </div>
+            <div class="cell medium-4">
+                <div class="feature-callout callout">
+                    <div class="feature-icon">
+                        <i class="fas fa-plus-circle"></i>
+                    </div>
+                    <h3>Add New Recipes</h3>
+                    <p>Share your own culinary creations with the community</p>
+                </div>
+            </div>
+            <div class="cell medium-4">
+                <div class="feature-callout callout">
+                    <div class="feature-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h3>Edit & Manage</h3>
+                    <p>Update and organize your recipe collection easily</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recipes Section -->
+    <div id="recipes" class="grid-container" style="margin-bottom: 4rem;">
+        <div class="grid-x align-justify section-header">
+            <div class="cell auto">
+                <h2>Popular Recipes</h2>
+            </div>
+            <div class="cell shrink">
+                <button class="button primary" data-open="addRecipeModal">
+                    <i class="fas fa-plus"></i> Add New Recipe
+                </button>
+            </div>
+        </div>
+
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-6 large-4">
+                <div class="recipe-card">
+                    <div class="recipe-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    </div>
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Classic Spaghetti Carbonara</h3>
+                        <div class="recipe-meta">
+                            <i class="fas fa-clock"></i>
+                            <span>30 mins</span>
+                            <span class="badge">Italian</span>
+                        </div>
+                        <p class="recipe-description">
+                            Authentic Italian pasta dish with eggs, cheese, and pancetta. A creamy and delicious classic.
+                        </p>
+                        <div class="button-group">
+                            <a href="#" class="button small primary">View Recipe</a>
+                            <a href="#" class="button small secondary">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cell medium-6 large-4">
+                <div class="recipe-card">
+                    <div class="recipe-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                    </div>
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Chocolate Chip Cookies</h3>
+                        <div class="recipe-meta">
+                            <i class="fas fa-clock"></i>
+                            <span>25 mins</span>
+                            <span class="badge">Dessert</span>
+                        </div>
+                        <p class="recipe-description">
+                            Perfectly chewy cookies with melted chocolate chips. A timeless favorite for all ages.
+                        </p>
+                        <div class="button-group">
+                            <a href="#" class="button small primary">View Recipe</a>
+                            <a href="#" class="button small secondary">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cell medium-6 large-4">
+                <div class="recipe-card">
+                    <div class="recipe-image" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                    </div>
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Thai Green Curry</h3>
+                        <div class="recipe-meta">
+                            <i class="fas fa-clock"></i>
+                            <span>45 mins</span>
+                            <span class="badge">Thai</span>
+                        </div>
+                        <p class="recipe-description">
+                            Fragrant and spicy curry with coconut milk and vegetables. Bursting with authentic Thai flavors.
+                        </p>
+                        <div class="button-group">
+                            <a href="#" class="button small primary">View Recipe</a>
+                            <a href="#" class="button small secondary">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Recipe Modal -->
+    <div class="reveal" id="addRecipeModal" data-reveal>
+        <h2>Add New Recipe</h2>
+        <form>
+            <label>
+                Recipe Title
+                <input type="text" placeholder="e.g. Chocolate Cake">
+            </label>
+
+            <label>
+                Ingredients
+                <textarea placeholder="List ingredients, one per line" rows="4"></textarea>
+            </label>
+
+            <label>
+                Method
+                <textarea placeholder="Step-by-step instructions" rows="6"></textarea>
+            </label>
+
+            <div class="button-group">
+                <button type="submit" class="button primary">Add Recipe</button>
+                <button type="button" class="button secondary" data-close>Cancel</button>
+            </div>
+        </form>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-dark">
+        <div class="grid-container">
+            <div class="text-center">
+                <p>&copy; 2025 Recipe App - Foundation Design</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/js/foundation.min.js"></script>
+    <script>
+        $(document).foundation();
+    </script>
+</body>
+</html>

@@ -1,65 +1,87 @@
-<div class="recipes-container">
-    <div class="recipes-header">
-        <h1>All Recipes</h1>
-        <button class="btn btn-primary" onclick="showAddForm()">Add New Recipe</button>
-    </div>
-    
-    <!-- Add Recipe Form (initially hidden) -->
-    <div id="add-recipe-form" class="recipe-form" style="display: none;">
-        <h2>Add New Recipe</h2>
-        <form action="/recipes" method="POST">
-            <div class="form-group">
-                <label for="title">Recipe Title:</label>
-                <input type="text" id="title" name="title" required>
+<section class="py-16">
+    <div class="mx-auto max-w-6xl px-4">
+        <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">All Recipes</h1>
+                <p class="mt-2 text-gray-500">Discover community favorites or add your own creation.</p>
             </div>
-            
-            <div class="form-group">
-                <label for="ingredients">Ingredients:</label>
-                <textarea id="ingredients" name="ingredients" rows="4" placeholder="List ingredients, one per line" required></textarea>
-            </div>
-            
-            <div class="form-group">
-                <label for="method">Method:</label>
-                <textarea id="method" name="method" rows="6" placeholder="Step-by-step method" required></textarea>
-            </div>
-            
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Add Recipe</button>
-                <button type="button" class="btn btn-secondary" onclick="hideAddForm()">Cancel</button>
-            </div>
-        </form>
-    </div>
-    
-    <!-- Recipes List -->
-    <div class="recipes-grid">
-        {{#if recipes}}
-            {{#each recipes}}
-            <div class="recipe-card">
-                <h3><a href="/recipes/{{id}}">{{title}}</a></h3>
-                <div class="recipe-preview">
-                    <p><strong>Ingredients:</strong> {{truncate ingredients 100}}</p>
+            <button onclick="showAddForm()" class="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:scale-105 hover:shadow-xl">+ Add New Recipe</button>
+        </div>
+
+        <div id="add-recipe-form" class="mt-10 hidden rounded-2xl bg-white p-8 shadow-xl">
+            <h2 class="text-2xl font-semibold text-gray-800">Add New Recipe</h2>
+            <p class="mt-2 text-sm text-gray-500">Share your go-to dish with clear ingredients and steps.</p>
+            <form action="/recipes" method="POST" class="mt-6 space-y-6">
+                <div>
+                    <label for="title" class="block text-sm font-semibold text-gray-700">Recipe Title</label>
+                    <input id="title" name="title" type="text" required class="mt-2 w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-800 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Chocolate Chip Cookies" />
                 </div>
-                <div class="recipe-actions">
-                    <a href="/recipes/{{id}}" class="btn btn-sm">View Details</a>
+
+                <div>
+                    <label for="ingredients" class="block text-sm font-semibold text-gray-700">Ingredients</label>
+                    <textarea id="ingredients" name="ingredients" rows="4" required class="mt-2 w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-800 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="List ingredients, one per line"></textarea>
                 </div>
-            </div>
-            {{/each}}
-        {{else}}
-            <div class="no-recipes">
-                <p>No recipes found. <a href="#" onclick="showAddForm()">Add your first recipe!</a></p>
-            </div>
-        {{/if}}
+
+                <div>
+                    <label for="method" class="block text-sm font-semibold text-gray-700">Method</label>
+                    <textarea id="method" name="method" rows="6" required class="mt-2 w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-800 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Step-by-step method"></textarea>
+                </div>
+
+                <div class="flex flex-col gap-3 text-sm font-semibold md:flex-row">
+                    <button type="submit" class="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 px-6 py-3 text-white shadow-lg transition hover:scale-105 hover:shadow-xl">Add Recipe</button>
+                    <button type="button" onclick="hideAddForm()" class="inline-flex items-center justify-center rounded-lg bg-gray-100 px-6 py-3 text-gray-700 transition hover:bg-gray-200">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {{#if recipes}}
+                {{#each recipes}}
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-2 hover:shadow-2xl">
+                        <div class="h-40 bg-gradient-to-br from-purple-500/70 via-indigo-500/60 to-blue-500/60"></div>
+                        <div class="space-y-4 p-6">
+                            <h3 class="text-xl font-semibold text-gray-800">
+                                <a href="/recipes/{{id}}" class="transition hover:text-purple-600">{{title}}</a>
+                            </h3>
+                            <p class="text-sm text-gray-500">Ingredients preview</p>
+                            <p class="text-gray-600">{{truncate ingredients 120}}</p>
+                            <div>
+                                <a href="/recipes/{{id}}" class="inline-flex items-center rounded-lg bg-purple-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-purple-700">View Recipe</a>
+                            </div>
+                        </div>
+                    </article>
+                {{/each}}
+            {{else}}
+                <div class="col-span-full rounded-2xl bg-white p-10 text-center shadow-md">
+                    <h3 class="text-2xl font-semibold text-gray-800">No recipes yet</h3>
+                    <p class="mt-3 text-gray-500">Start your collection by adding the first recipe.</p>
+                    <button onclick="showAddForm()" class="mt-6 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:scale-105 hover:shadow-xl">Add your first recipe</button>
+                </div>
+            {{/if}}
+        </div>
     </div>
-</div>
+</section>
 
 <script>
-function showAddForm() {
-    document.getElementById('add-recipe-form').style.display = 'block';
-    document.getElementById('title').focus();
+async function showAddForm() {
+    // I also love promises
+    await Promise.resolve()
+    const formContainer = document.getElementById('add-recipe-form')
+    formContainer.classList.remove('hidden')
+    const titleField = document.getElementById('title')
+    if (titleField) {
+        titleField.focus()
+    }
 }
 
-function hideAddForm() {
-    document.getElementById('add-recipe-form').style.display = 'none';
-    document.querySelector('#add-recipe-form form').reset();
+async function hideAddForm() {
+    // I also love promises
+    await Promise.resolve()
+    const formContainer = document.getElementById('add-recipe-form')
+    formContainer.classList.add('hidden')
+    const form = document.querySelector('#add-recipe-form form')
+    if (form) {
+        form.reset()
+    }
 }
 </script>

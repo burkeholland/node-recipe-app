@@ -1,93 +1,107 @@
-<div class="recipe-container">
-    {{#if recipe}}
-        <div class="recipe-header">
-            <h1>{{recipe.title}}</h1>
-            <div class="recipe-actions">
-                <button class="btn btn-primary" onclick="showEditForm()">Edit Recipe</button>
-                <a href="/recipes" class="btn btn-secondary">Back to All Recipes</a>
-            </div>
-        </div>
-        
-        <!-- Recipe Details -->
-        <div id="recipe-details" class="recipe-content">
-            <div class="recipe-section">
-                <h2>Ingredients</h2>
-                <div class="ingredients">
-                    {{#each (split recipe.ingredients (newline))}}
-                        {{#if this}}
-                        <div class="ingredient">{{this}}</div>
-                        {{/if}}
-                    {{else}}
-                        <!-- Fallback if split doesn't work -->
-                        <div class="ingredient">{{recipe.ingredients}}</div>
-                    {{/each}}
+<section class="py-16">
+    <div class="mx-auto max-w-4xl px-4">
+        {{#if recipe}}
+            <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <h1 class="text-4xl font-bold text-gray-900">{{recipe.title}}</h1>
+                <div class="flex flex-col gap-3 md:flex-row">
+                    <button onclick="showEditForm()" class="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:scale-105 hover:shadow-xl">Edit Recipe</button>
+                    <a href="/recipes" class="inline-flex items-center justify-center rounded-lg bg-gray-100 px-6 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-200">Back to All Recipes</a>
                 </div>
             </div>
-            
-            <div class="recipe-section">
-                <h2>Method</h2>
-                <div class="method">
-                    {{#each (split recipe.method (newline))}}
-                        {{#if this}}
-                        <div class="instruction-step">
-                            <span class="step-number">{{add @index 1}}.</span>
-                            <span class="step-text">{{this}}</span>
-                        </div>
-                        {{/if}}
-                    {{else}}
-                        <!-- Fallback if split doesn't work -->
-                        <div class="instruction-step">
-                            <span class="step-number">1.</span>
-                            <span class="step-text">{{recipe.method}}</span>
-                        </div>
-                    {{/each}}
-                </div>
+
+            <div id="recipe-details" class="mt-10 space-y-10">
+                <section class="rounded-2xl bg-white p-8 shadow-xl">
+                    <h2 class="text-2xl font-semibold text-gray-800">Ingredients</h2>
+                    <div class="mt-6 grid gap-3">
+                        {{#each (split recipe.ingredients (newline))}}
+                            {{#if this}}
+                                <div class="flex items-start gap-3 rounded-xl border border-purple-100 bg-purple-50/60 px-4 py-3 text-gray-800">
+                                    <span class="mt-1 h-2 w-2 rounded-full bg-purple-500"></span>
+                                    <span>{{this}}</span>
+                                </div>
+                            {{/if}}
+                        {{else}}
+                            <div class="rounded-xl border border-purple-100 bg-purple-50/60 px-4 py-3 text-gray-800">{{recipe.ingredients}}</div>
+                        {{/each}}
+                    </div>
+                </section>
+
+                <section class="rounded-2xl bg-white p-8 shadow-xl">
+                    <h2 class="text-2xl font-semibold text-gray-800">Method</h2>
+                    <div class="mt-6 space-y-4">
+                        {{#each (split recipe.method (newline))}}
+                            {{#if this}}
+                                <div class="flex gap-4 rounded-xl border border-indigo-100 bg-indigo-50/60 px-5 py-4 text-gray-800">
+                                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 text-sm font-bold text-white">{{add @index 1}}</span>
+                                    <p class="leading-relaxed">{{this}}</p>
+                                </div>
+                            {{/if}}
+                        {{else}}
+                            <div class="flex gap-4 rounded-xl border border-indigo-100 bg-indigo-50/60 px-5 py-4 text-gray-800">
+                                <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 text-sm font-bold text-white">1</span>
+                                <p class="leading-relaxed">{{recipe.method}}</p>
+                            </div>
+                        {{/each}}
+                    </div>
+                </section>
             </div>
-        </div>
-        
-        <!-- Edit Recipe Form (initially hidden) -->
-        <div id="edit-recipe-form" class="recipe-form" style="display: none;">
-            <h2>Edit Recipe</h2>
-            <form action="/recipes/{{recipe.id}}/edit" method="POST">
-                <div class="form-group">
-                    <label for="edit-title">Recipe Title:</label>
-                    <input type="text" id="edit-title" name="title" value="{{recipe.title}}" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="edit-ingredients">Ingredients:</label>
-                    <textarea id="edit-ingredients" name="ingredients" rows="4" required>{{recipe.ingredients}}</textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="edit-method">Method:</label>
-                    <textarea id="edit-method" name="method" rows="6" required>{{recipe.method}}</textarea>
-                </div>
-                
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Update Recipe</button>
-                    <button type="button" class="btn btn-secondary" onclick="hideEditForm()">Cancel</button>
-                </div>
-            </form>
-        </div>
-    {{else}}
-        <div class="recipe-not-found">
-            <h1>Recipe Not Found</h1>
-            <p>The recipe you're looking for doesn't exist.</p>
-            <a href="/recipes" class="btn btn-primary">Back to All Recipes</a>
-        </div>
-    {{/if}}
-</div>
+
+            <div id="edit-recipe-form" class="mt-10 hidden rounded-2xl bg-white p-8 shadow-xl">
+                <h2 class="text-2xl font-semibold text-gray-800">Edit Recipe</h2>
+                <p class="mt-2 text-sm text-gray-500">Update the details and save your latest tweaks.</p>
+                <form action="/recipes/{{recipe.id}}/edit" method="POST" class="mt-6 space-y-6">
+                    <div>
+                        <label for="edit-title" class="block text-sm font-semibold text-gray-700">Recipe Title</label>
+                        <input id="edit-title" name="title" type="text" value="{{recipe.title}}" required class="mt-2 w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-800 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" />
+                    </div>
+                    <div>
+                        <label for="edit-ingredients" class="block text-sm font-semibold text-gray-700">Ingredients</label>
+                        <textarea id="edit-ingredients" name="ingredients" rows="4" required class="mt-2 w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-800 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200">{{recipe.ingredients}}</textarea>
+                    </div>
+                    <div>
+                        <label for="edit-method" class="block text-sm font-semibold text-gray-700">Method</label>
+                        <textarea id="edit-method" name="method" rows="6" required class="mt-2 w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-800 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200">{{recipe.method}}</textarea>
+                    </div>
+                    <div class="flex flex-col gap-3 text-sm font-semibold md:flex-row">
+                        <button type="submit" class="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 px-6 py-3 text-white shadow-lg transition hover:scale-105 hover:shadow-xl">Update Recipe</button>
+                        <button type="button" onclick="hideEditForm()" class="inline-flex items-center justify-center rounded-lg bg-gray-100 px-6 py-3 text-gray-700 transition hover:bg-gray-200">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        {{else}}
+            <div class="rounded-2xl bg-white p-12 text-center shadow-xl">
+                <h1 class="text-3xl font-bold text-gray-900">Recipe Not Found</h1>
+                <p class="mt-3 text-gray-500">The recipe you're looking for doesn't exist.</p>
+                <a href="/recipes" class="mt-6 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:scale-105 hover:shadow-xl">Back to All Recipes</a>
+            </div>
+        {{/if}}
+    </div>
+</section>
 
 <script>
-function showEditForm() {
-    document.getElementById('recipe-details').style.display = 'none';
-    document.getElementById('edit-recipe-form').style.display = 'block';
-    document.getElementById('edit-title').focus();
+async function showEditForm() {
+    // I also love promises
+    await Promise.resolve()
+    const details = document.getElementById('recipe-details')
+    const form = document.getElementById('edit-recipe-form')
+    if (details && form) {
+        details.classList.add('hidden')
+        form.classList.remove('hidden')
+        const titleField = document.getElementById('edit-title')
+        if (titleField) {
+            titleField.focus()
+        }
+    }
 }
 
-function hideEditForm() {
-    document.getElementById('recipe-details').style.display = 'block';
-    document.getElementById('edit-recipe-form').style.display = 'none';
+async function hideEditForm() {
+    // I also love promises
+    await Promise.resolve()
+    const details = document.getElementById('recipe-details')
+    const form = document.getElementById('edit-recipe-form')
+    if (details && form) {
+        details.classList.remove('hidden')
+        form.classList.add('hidden')
+    }
 }
 </script>
