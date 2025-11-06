@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe App - Material Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fafafa;
+        }
+        .app-bar {
+            background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+            color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            padding: 16px 0;
+        }
+        .app-bar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .app-bar h1 {
+            font-size: 24px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .app-bar nav {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        .app-bar a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        .app-bar a:hover {
+            opacity: 1;
+        }
+        .hero {
+            background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+            color: white;
+            padding: 80px 24px;
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 16px;
+        }
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 32px;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .section {
+            padding: 64px 0;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            letter-spacing: 0.5px;
+        }
+        .btn-primary {
+            background-color: #1976d2;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #1565c0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .btn-white {
+            background-color: white;
+            color: #1976d2;
+        }
+        .btn-white:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .btn-fab {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: #ff4081;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .btn-fab:hover {
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+        .feature-card {
+            text-align: center;
+            padding: 32px;
+        }
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #e3f2fd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+        .feature-icon .material-icons {
+            font-size: 40px;
+            color: #1976d2;
+        }
+        .feature-card h3 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            color: #212121;
+        }
+        .feature-card p {
+            color: #757575;
+            line-height: 1.6;
+        }
+        .recipes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+        .recipes-header h2 {
+            font-size: 34px;
+            font-weight: 400;
+            color: #212121;
+        }
+        .recipes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s;
+            overflow: hidden;
+        }
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .card-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+        }
+        .card-content {
+            padding: 24px;
+        }
+        .card-title {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #212121;
+        }
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #757575;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .card-description {
+            color: #616161;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .card-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .btn-text {
+            background: none;
+            color: #1976d2;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+            border-radius: 4px;
+        }
+        .btn-text:hover {
+            background-color: rgba(25, 118, 210, 0.08);
+        }
+        footer {
+            background-color: #212121;
+            color: white;
+            text-align: center;
+            padding: 32px 0;
+            margin-top: 64px;
+        }
+        @media (max-width: 768px) {
+            .app-bar nav {
+                display: none;
+            }
+            .hero h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- App Bar -->
+    <div class="app-bar">
+        <div class="container">
+            <h1>
+                <span class="material-icons">restaurant_menu</span>
+                Recipe App
+            </h1>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#recipes">Recipes</a>
+                <a href="#add">Add Recipe</a>
+                <button class="btn btn-white">Login</button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="container">
+            <h2>Welcome to Recipe App</h2>
+            <p>Discover, create, and manage your favorite recipes!</p>
+            <button class="btn btn-white">Explore Recipes</button>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <div class="section">
+        <div class="container">
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <span class="material-icons">menu_book</span>
+                    </div>
+                    <h3>Browse Recipes</h3>
+                    <p>Explore our collection of delicious recipes from around the world</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <span class="material-icons">add_circle</span>
+                    </div>
+                    <h3>Add New Recipes</h3>
+                    <p>Share your own culinary creations with the community</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <span class="material-icons">edit</span>
+                    </div>
+                    <h3>Edit & Manage</h3>
+                    <p>Update and organize your recipe collection easily</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recipes -->
+    <div id="recipes" class="section" style="background-color: white;">
+        <div class="container">
+            <div class="recipes-header">
+                <h2>Popular Recipes</h2>
+            </div>
+            <div class="recipes-grid">
+                <div class="card">
+                    <div class="card-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Classic Spaghetti Carbonara</h3>
+                        <div class="card-meta">
+                            <span class="material-icons" style="font-size: 18px;">schedule</span>
+                            <span>30 mins</span>
+                        </div>
+                        <p class="card-description">Authentic Italian pasta dish with eggs, cheese, and pancetta...</p>
+                        <div class="card-actions">
+                            <button class="btn-text">View Recipe</button>
+                            <button class="btn-text">Edit</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Chocolate Chip Cookies</h3>
+                        <div class="card-meta">
+                            <span class="material-icons" style="font-size: 18px;">schedule</span>
+                            <span>25 mins</span>
+                        </div>
+                        <p class="card-description">Perfectly chewy cookies with melted chocolate chips...</p>
+                        <div class="card-actions">
+                            <button class="btn-text">View Recipe</button>
+                            <button class="btn-text">Edit</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Thai Green Curry</h3>
+                        <div class="card-meta">
+                            <span class="material-icons" style="font-size: 18px;">schedule</span>
+                            <span>45 mins</span>
+                        </div>
+                        <p class="card-description">Fragrant and spicy curry with coconut milk and vegetables...</p>
+                        <div class="card-actions">
+                            <button class="btn-text">View Recipe</button>
+                            <button class="btn-text">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAB -->
+    <button class="btn-fab">
+        <span class="material-icons">add</span>
+    </button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Recipe App - Material Design</p>
+        </div>
+    </footer>
+</body>
+</html>
